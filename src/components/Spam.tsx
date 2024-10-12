@@ -7,6 +7,7 @@ const SpamDetector: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const [result, setResult] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ const SpamDetector: React.FC = () => {
     setResult("");
 
     try {
+      setLoading(true);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_FLASH_API_URL}/predict`, // Updated here
         {
@@ -29,6 +31,8 @@ const SpamDetector: React.FC = () => {
     } catch (err) {
       console.error("Error:", err);
       setError("Error detecting spam. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -52,7 +56,7 @@ const SpamDetector: React.FC = () => {
               type="submit"
               className="bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-md transition-colors duration-200"
             >
-              Detect Spam
+              {loading ? "Loading..." : " Detect Spam"}
             </button>
           </div>
         </form>
