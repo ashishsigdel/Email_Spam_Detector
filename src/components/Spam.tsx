@@ -14,9 +14,12 @@ const SpamDetector: React.FC = () => {
     setResult("");
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/predict", {
-        message,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_FLASH_API_URL}/predict`, // Updated here
+        {
+          message,
+        }
+      );
 
       if (response.data.spam === 1) {
         setResult("Spam");

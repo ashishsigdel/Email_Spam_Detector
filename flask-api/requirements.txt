@@ -1,0 +1,4 @@
+Flask==2.2.2
+Flask-CORS==3.0.10
+nltk==3.7
+scikit-learn==1.1.3
