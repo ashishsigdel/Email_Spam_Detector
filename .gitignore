@@ -2,9 +2,12 @@
 
 # dependencies
 /node_modules
+/flask-api/venv
+/api/venv
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+/venv
 
 # testing
 /coverage
